@@ -13,6 +13,12 @@ distribution function for a Poisson distribution all into the global
 namespace is *probably* not a good idea, but boy is it useful for quick
 data exploration. That's what Data Shell does for Python.
 
+Install with
+
+.. code:: sh
+
+    pip3 install datashell
+
 Open up an IPython-based data shell with by typing ``datashell`` into
 your terminal.
 

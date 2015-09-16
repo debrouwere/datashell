@@ -4,6 +4,12 @@
 
 If you have a statistics background, you're probably familiar with R. And if you've been using R for a while, the thing you start to appreciate most is that once you have that terminal open, you can get down to business pretty much immediately. Dumping functionality as diverse as numerical optimization, linear regression and the cumulative distribution function for a Poisson distribution all into the global namespace is _probably_ not a good idea, but boy is it useful for quick data exploration. That's what Data Shell does for Python.
 
+Install with
+
+```sh
+pip3 install datashell
+```
+
 Open up an IPython-based data shell with by typing `datashell` into your terminal.
 
 (If you want, you can alias it to something shorter too, by putting e.g. `alias dash=datashell` into your `~/.bashrc` or wherever your shell customizations live.)

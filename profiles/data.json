@@ -1,0 +1,13 @@
+[
+    "math",
+    "random",
+    "numpy",
+    "sympy",
+    "pandas",
+    "scipy.optimize",
+    "scipy.stats",
+    "scipy.stats.contingency",
+    "scipy.stats.distributions",
+    "statsmodels.api",
+    "statsmodels.formula.api"
+]

@@ -1,6 +1,10 @@
 from importlib import import_module
 import os
 import json
+import extensions
+
+
+PROFILE = 'data'
 
 
 # TODO: pandas can also read in JSON easily
@@ -53,12 +57,10 @@ def here(*segments):
     return os.path.join(os.path.dirname(os.path.realpath(__file__)), *segments)
 
 
-helpers = json.load(open(here('helpers.json')))
+helpers = json.load(open(here('profiles/build/{}.json'.format(PROFILE))))
 
 
 class LazyVariable(object):
-    triggers = {}
-
     def __init__(self, package, name, representation):
         self.package = package
         self.name = name
@@ -79,8 +81,8 @@ class LazyVariable(object):
         g.update(module.__dict__)
         g[self.package] = module
 
-        if self.package in self.triggers:
-            g.update(self.triggers[self.package](module))
+        if self.package in extensions.registry:
+            g.update(extensions.registry[self.package](module))
 
         if self.name:
             return g[self.name]
@@ -133,33 +135,6 @@ class LazyVariable(object):
         return other ** self.value
 
 
-def __sympy(module):
-    """
-    * f, g, h are often reserved for functions
-    * i, j, k, l, m, n are often indices
-    * t is the t distribution
-
-    ... but everything else is nice to have defined out of the box
-    """
-
-    keys = 'a b c d e o p q r s u v w x y z'
-    return dict(list(zip(keys.split(), module.symbols(keys))))
-
-
-LazyVariable.triggers = {
-    'sympy': __sympy,
-    }
-
-
 for package, key, representation in helpers:
     name = key or package
     globals()[name] = LazyVariable(package, key, representation)
-
-
-# builtin modules generally load fast (there at the top of the list of paths to check), 
-# so we don't need to lazyload these
-import math
-from math import *
-
-import random
-from random import *

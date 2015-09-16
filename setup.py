@@ -27,7 +27,7 @@ setup(name='datashell',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: ISC License',
+        'License :: OSI Approved :: ISC License (ISCL)',
         'Operating System :: OS Independent',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Programming Language :: Python',

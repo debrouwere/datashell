@@ -28,21 +28,20 @@ class CSVLoader(object):
                 directory=root,
                 ))
 
-    """
-    Not sure yet what a non-insane way of persisting new/modified datasets would be,
-    and if it's even necessary, but might be interesting to play around with.
-
-    E.g.
-
-        tables.modif = tables.test.apply(...)
-        tables.save()
-
-    `setattr` puts files on a "to save" list, and then calling save does the
-    final persistence.
-    """
+    # Not sure yet what a non-insane way of persisting new/modified datasets would be,
+    # and if it's even necessary, but might be interesting to play around with.
+    #
+    # E.g.
+    #
+    #     tables.modif = tables.test.apply(...)
+    #     tables.save()
+    #
+    # `setattr` puts files on a "to save" list, and then calling save does the
+    # final persistence.
+    
     #def __setattr__(self):
     #    raise NotImplementedError()
-
+    
     #def save(self):
     #    raise NotImplementedError()
 
@@ -65,6 +64,14 @@ class LazyVariable(object):
         self.name = name
         self.representation = representation
 
+
+    # In most cases, when lazy-loading something you'd implement
+    # some sort of memoization routine. Here, instead, we replace
+    # the lazy variable with its loaded equivalent by directly
+    # modifying the global namespace. The lazy variable vanishes
+    # as soon as it is called. While perhaps a bit hackish, 
+    # in this particular case I feel it's actually the more 
+    # robust solution.
     @property
     def value(self):
         g = globals()
@@ -86,6 +93,12 @@ class LazyVariable(object):
     def __getattr__(self, name):
         return getattr(self.value, name)
 
+    def __call__(self, *vargs, **kwargs):
+        return self.value(*vargs, **kwargs)
+
+    # All methods that follow are primarily useful in the context of sympy, 
+    # to enable e.g. `diff(2**x)` when neither `diff` or `sympy.symbols('x')`
+    # is loaded yet.
     def __invert__(self):
         return -self.value
 
@@ -118,9 +131,6 @@ class LazyVariable(object):
 
     def __rpow__(self, other):
         return other ** self.value
-
-    def __call__(self, *vargs, **kwargs):
-        return self.value(*vargs, **kwargs)
 
 
 def __sympy(module):

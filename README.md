@@ -10,9 +10,14 @@ Install with
 pip3 install datashell
 ```
 
-Open up an IPython-based data shell with by typing `datashell` into your terminal.
+Open up an IPython-based data shell for Python 3 by typing `datashell` into your terminal.
 
 (If you want, you can alias it to something shorter too, by putting e.g. `alias dash=datashell` into your `~/.bashrc` or wherever your shell customizations live.)
+
+There is also `datashell-qt` which is the same thing but with inline plotting. It will reconfigure your default IPython 4 shell to automatically load datashell if necessary. (Apologies for the configuration hijack. With the transition from IPython to Jupyter, the best way to configure custom profiles seems to be in flux.) Alternatively, just type this into an IPython QtConsole:
+
+    %matplotlib inline
+    %run /usr/local/bin/datashell.py
 
 ### Convenience functions
 

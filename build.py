@@ -23,7 +23,4 @@ for profile in glob('profiles/*.json'):
             representation = repr(getattr(package, key))
             functions.append((package_name, key, representation))
 
-    # TODO: remove hardcoding
-    functions.extend([('sympy', letter, letter) for letter in 'a b c d e o p q r s u v w x y z'.split()])
-
     json.dump(functions, open('profiles/build/{}'.format(profile_name), 'w'))

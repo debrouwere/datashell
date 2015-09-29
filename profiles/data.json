@@ -2,6 +2,7 @@
     "math",
     "random",
     "numpy",
+    "sympy.abc",
     "sympy",
     "pandas",
     "scipy.optimize",

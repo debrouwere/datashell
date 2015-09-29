@@ -1,7 +1,6 @@
 from importlib import import_module
 import os
 import json
-import extensions
 
 
 PROFILE = 'data'
@@ -61,11 +60,12 @@ helpers = json.load(open(here('profiles/build/{}.json'.format(PROFILE))))
 
 
 class LazyVariable(object):
+    loaded = set()
+
     def __init__(self, package, name, representation):
         self.package = package
         self.name = name
         self.representation = representation
-
 
     # In most cases, when lazy-loading something you'd implement
     # some sort of memoization routine. Here, instead, we replace
@@ -80,9 +80,7 @@ class LazyVariable(object):
         module = import_module(self.package)
         g.update(module.__dict__)
         g[self.package] = module
-
-        if self.package in extensions.registry:
-            g.update(extensions.registry[self.package](module))
+        self.loaded.add(self.package)
 
         if self.name:
             return g[self.name]

@@ -1,27 +1,21 @@
 # Data Shell
 
-**Please note:** this is just a little experiment, don't expect too much.
-
 If you have a statistics background, you're probably familiar with R. And if you've been using R for a while, the thing you start to appreciate most is that once you have that terminal open, you can get down to business pretty much immediately. Dumping functionality as diverse as numerical optimization, linear regression and the cumulative distribution function for a Poisson distribution all into the global namespace is _probably_ not a good idea, but boy is it useful for quick data exploration. That's what Data Shell does for Python.
 
 Install with
 
 ```sh
 pip3 install datashell
+datashell-install
 ```
 
-Open up an IPython-based data shell for Python 3 by typing `datashell` into your terminal.
+Open up an IPython-based data shell for Python 3 by typing `datashell` into your terminal. For inline plotting, use `datashell-qt` instead.
 
-(If you want, you can alias it to something shorter too, by putting e.g. `alias dash=datashell` into your `~/.bashrc` or wherever your shell customizations live.)
-
-There is also `datashell-qt` which is the same thing but with inline plotting. It will reconfigure your default IPython 4 shell to automatically load datashell if necessary. (Apologies for the configuration hijack. With the transition from IPython to Jupyter, the best way to configure custom profiles seems to be in flux.) Alternatively, just type this into an IPython QtConsole:
-
-    %matplotlib inline
-    %run /usr/local/bin/datashell.py
+_Pro tip:_ alias these shells to something shorter. For example, put `alias dash=datashell` and `alias dashi=datashell-qt` into your `~/.bashrc` or wherever your shell customizations live.
 
 ### Convenience functions
 
-Currently, it loads convenience functions from `numpy`, `scipy.stats`, `statsmodels`, `sympy` as well as Pandas.
+Currently, it loads convenience functions from `math`, `random`, `numpy`, `scipy.stats`, `statsmodels`, `sympy` as well as `pandas`.
 
 All functions are lazy-loaded, so startup time is not much different than a regular IPython terminal.
 
@@ -50,10 +44,11 @@ Data shell also includes a Pandas autoloader for CSV files: you can access a Pan
 
 ### Useful shortcuts
 
+* from `math`: `ceil`, `floor`, `log`, `factorial`, `sin` and pretty much anything you'd find on a good calculator
 * from `random`: `shuffle`, `choice`, `sample` and friends
 * from `sympy`: `expand`, `factor`, `simplify` to simplify mathematical expressions, `diff` to differentiate, `integrate` to integrate (many one-letter variables are also predefined: a-e, o-s and u-z)
 * from `scipy.optimize`: `minimize`
-* from `scipy.stats`: `describe`, `kurtosis`, `mode`, `moment`, `skew`, `pearsonr`, `spearmanr` and others
+* from `scipy.stats`: `describe`, `itemfreq`, `relfreq`, `kurtosis`, `mode`, `moment`, `skew`, `pearsonr`, `spearmanr` and others
 * from `scipy.stats.contingency`: `expected_freq`, `margins`
 * from `scipy.stats.distributions`: `cdf`, `pdf`, `ppf`, `sf`, `rvs` and various other functions on statistical distributions from normal to gamma
 * from `statsmodels.api`: `datasets` and `families` (for use with generalized linear models)

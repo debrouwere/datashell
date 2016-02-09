@@ -1,9 +1,6 @@
 Data Shell
 ==========
 
-**Please note:** this is just a little experiment, don't expect too
-much.
-
 If you have a statistics background, you're probably familiar with R.
 And if you've been using R for a while, the thing you start to
 appreciate most is that once you have that terminal open, you can get
@@ -18,19 +15,21 @@ Install with
 .. code:: sh
 
     pip3 install datashell
+    datashell-install
 
-Open up an IPython-based data shell with by typing ``datashell`` into
-your terminal.
+Open up an IPython-based data shell for Python 3 by typing ``datashell``
+into your terminal. For inline plotting, use ``datashell-qt`` instead.
 
-(If you want, you can alias it to something shorter too, by putting e.g.
-``alias dash=datashell`` into your ``~/.bashrc`` or wherever your shell
-customizations live.)
+*Pro tip:* alias these shells to something shorter. For example, put
+``alias dash=datashell`` and ``alias dashi=datashell-qt`` into your
+``~/.bashrc`` or wherever your shell customizations live.
 
 Convenience functions
 ---------------------
 
-Currently, it loads convenience functions from ``numpy``,
-``scipy.stats``, ``statsmodels``, ``sympy`` as well as Pandas.
+Currently, it loads convenience functions from ``math``, ``random``,
+``numpy``, ``scipy.stats``, ``statsmodels``, ``sympy`` as well as
+``pandas``.
 
 All functions are lazy-loaded, so startup time is not much different
 than a regular IPython terminal.
@@ -69,14 +68,17 @@ access a Pandas DataFrame of ``./subdir/myfile.csv`` from
 Useful shortcuts
 ----------------
 
+-  from ``math``: ``ceil``, ``floor``, ``log``, ``factorial``, ``sin``
+   and pretty much anything you'd find on a good calculator
 -  from ``random``: ``shuffle``, ``choice``, ``sample`` and friends
 -  from ``sympy``: ``expand``, ``factor``, ``simplify`` to simplify
    mathematical expressions, ``diff`` to differentiate, ``integrate`` to
    integrate (many one-letter variables are also predefined: a-e, o-s
    and u-z)
 -  from ``scipy.optimize``: ``minimize``
--  from ``scipy.stats``: ``describe``, ``kurtosis``, ``mode``,
-   ``moment``, ``skew``, ``pearsonr``, ``spearmanr`` and others
+-  from ``scipy.stats``: ``describe``, ``itemfreq``, ``relfreq``,
+   ``kurtosis``, ``mode``, ``moment``, ``skew``, ``pearsonr``,
+   ``spearmanr`` and others
 -  from ``scipy.stats.contingency``: ``expected_freq``, ``margins``
 -  from ``scipy.stats.distributions``: ``cdf``, ``pdf``, ``ppf``,
    ``sf``, ``rvs`` and various other functions on statistical

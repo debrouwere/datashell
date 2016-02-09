@@ -1,0 +1,5 @@
+{
+    "display_name": "Data Shell",
+    "language": "python",
+    "argv": ["python3", "-m", "ipykernel", "-f", "{connection_file}", "--profile", "datashell"]
+}

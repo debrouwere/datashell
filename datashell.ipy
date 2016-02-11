@@ -1,10 +1,12 @@
-%matplotlib inline
-
-
 from importlib import import_module
 import copy
 import os
 import json
+import ipykernel.zmqshell
+
+
+if isinstance(get_ipython(), ipykernel.zmqshell.ZMQInteractiveShell):
+    get_ipython().magic('matplotlib inline')
 
 
 PROFILE = 'data'

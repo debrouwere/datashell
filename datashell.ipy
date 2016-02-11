@@ -96,6 +96,8 @@ class LazyVariable(object):
     # robust solution.
     @property
     def value(self):
+        # TODO: try to be more informative
+        print('from {} import *'.format(self.package))
         g = globals()
         module = import_module(self.package)
         g.update(module.__dict__)
